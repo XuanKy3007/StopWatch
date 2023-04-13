@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="title">
+            <p style="color: #fff;">StopWatch</p>
+        </div>
+        <div>
+            <p style="color: #fff; font-size: 100px; margin: 100px 0px 0px 30px;"><span id="Minutes">00</span>:<span id="Seconds">00</span>.<span id="Mili">00</span></p>
+        </div>
+
+        <div id="container">
+            <button id="button-reset" onclick="reset()">
+                <p style="color: #fff;">Reset</p>
+            </button>
+            <div style="display: flex;justify-content: space-between;width: 20px;align-items: center;">
+                <div class="mini-button1">
+                </div>
+                <div class="mini-button2">
+                </div>
+            </div>
+            <button id="button-start" onclick="start()">
+                <p style="color: rgb(50,135,65);">Start</p>
+            </button>
+            <div style="display: flex;justify-content: space-between;width: 20px;align-items: center;">
+                <div class="mini-button1">
+                </div>
+                <div class="mini-button2">
+                </div>
+            </div>
+            <button id="button-stop" onclick="stop()">
+                <p style="color: rgb(212, 219, 214);">Stop</p>
+            </button>
+        </div>
+
+        <div id="box">
+            <div style="width: 90%;height: 50px; border-top: rgb(54, 52, 52) solid 1px;border-bottom: rgb(54, 52, 52) solid 1px; margin: 40px 0 0 20px;"></div>
+            <div style="width: 90%;height: 50px; border-top: rgb(54, 52, 52) solid 1px;border-bottom: rgb(54, 52, 52) solid 1px; margin: 50px 0 0 20px;"></div>
+
+        </div>
+    </div>
+
+    <script>
+     var mili = 0;
+var seconds = 0;
+var minutes = 0;
+var INTERVAL;
+
+function start(){
+    INTERVAL = setInterval(timer,10);
+}
+function timer(){
+    mili++;
+    if(mili < 10){
+        mili = "0" + mili;
+    }
+    document.getElementById("Mili").innerHTML = mili;
+    if(mili == 60){
+        mili = 00;
+        seconds++;
+        if(seconds < 10){
+            seconds = "0" + seconds;
+        }
+        document.getElementById("Seconds").innerHTML = seconds;
+        if(seconds == 60){
+            seconds = 00;
+            minutes++;
+            if(minutes < 10){
+                minutes = "0" + minutes;
+            }
+            document.getElementById("Minutes").innerHTML = minutes;
+        }
+    }   
+}
+function stop(){
+    clearInterval(INTERVAL);
+    alert("Stop here!");
+}
+function reset(){
+    clearInterval(INTERVAL);
+    mili = "00";
+    seconds = "00";
+    minutes = "00";
+    document.getElementById("Mili").innerHTML = mili;
+    document.getElementById("Seconds").innerHTML = seconds;
+    document.getElementById("Minutes").innerHTML = minutes;
+    alert("Reset all times by zero!")
+}
+    </script>
+    
+</body>
+
+
+</html>
